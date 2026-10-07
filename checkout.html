@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | Smart Canteen</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: #0b1f3a;
+        }
+
+        .checkout-section {
+            padding: 50px 0;
+        }
+
+        .checkout-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .checkout-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #ff9800;
+            box-shadow: 0 0 0 3px rgba(255,152,0,0.15);
+        }
+
+        .payment-option {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #ff9800;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .total-row {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .place-btn {
+            width: 100%;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .place-btn:hover {
+            background: #e68900;
+            color: white;
+        }
+
+        .success-box {
+            display: none;
+            text-align: center;
+        }
+
+        .token {
+            font-size: 45px;
+            font-weight: 700;
+            color: #ff9800;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+            🍽️ Smart Canteen
+        </a>
+
+        <a href="menu.html"
+           class="btn btn-outline-light btn-sm">
+
+            <i class="bi bi-arrow-left"></i>
+            Menu
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- CHECKOUT -->
+
+<section class="checkout-section">
+
+    <div class="container">
+
+        <div id="checkoutContent">
+
+            <div class="text-center mb-4">
+
+                <h2 class="checkout-title">
+                    Complete Your Order
+                </h2>
+
+                <p class="text-muted">
+                    Enter your details and place your order
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- CUSTOMER DETAILS -->
+
+                <div class="col-lg-7">
+
+                    <div class="checkout-card">
+
+                        <h4 class="fw-bold mb-4">
+                            <i class="bi bi-person"></i>
+                            Student Details
+                        </h4>
+
+                        <form id="orderForm">
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Full Name
+                                </label>
+
+                                <input type="text"
+                                       id="studentName"
+                                       class="form-control"
+                                       placeholder="Enter your name"
+                                       required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Student ID
+                                </label>
+
+                                <input type="text"
+                                       id="studentId"
+                                       class="form-control"
+                                       placeholder="Enter student ID"
+                                       required>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Phone Number
+                                </label>
+
+                                <input type="tel"
+                                       id="phone"
+                                       class="form-control"
+                                       placeholder="Enter phone number"
+                                       required>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-semibold">
+                                    Pickup Counter
+                                </label>
+
+                                <select id="counter"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">
+                                        Select counter
+                                    </option>
+
+                                    <option value="Counter 1">
+                                        Counter 1
+                                    </option>
+
+                                    <option value="Counter 2">
+                                        Counter 2
+                                    </option>
+
+                                    <option value="Counter 3">
+                                        Counter 3
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <h5 class="fw-bold mb-3">
+                                Payment Method
+                            </h5>
+
+
+                            <label class="payment-option">
+
+                                <input type="radio"
+                                       name="payment"
+                                       value="UPI"
+                                       required>
+
+                                <i class="bi bi-phone"></i>
+                                UPI Payment
+
+                            </label>
+
+
+                            <label class="payment-option">
+
+                                <input type="radio"
+                                       name="payment"
+                                       value="Pay at Counter">
+
+                                <i class="bi bi-cash"></i>
+                                Pay at Counter
+
+                            </label>
+
+
+                            <div class="mb-4 mt-3">
+
+                                <label class="form-label fw-semibold">
+                                    Special Instructions
+                                </label>
+
+                                <textarea id="instructions"
+                                          class="form-control"
+                                          rows="3"
+                                          placeholder="Example: Less spicy"></textarea>
+
+                            </div>
+
+
+                            <button type="submit"
+                                    class="place-btn">
+
+                                <i class="bi bi-check-circle"></i>
+                                Place Order
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="col-lg-5">
+
+                    <div class="checkout-card">
+
+                        <h4 class="fw-bold mb-4">
+                            <i class="bi bi-receipt"></i>
+                            Order Summary
+                        </h4>
+
+                        <div id="summaryItems"></div>
+
+                        <hr>
+
+                        <div class="summary-row">
+
+                            <span>Subtotal</span>
+
+                            <strong id="subtotal">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>Service Fee</span>
+
+                            <strong>
+                                ₹5
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row total-row">
+
+                            <span>Total</span>
+
+                            <span id="total">
+                                ₹5
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUCCESS -->
+
+        <div id="successBox"
+             class="checkout-card success-box">
+
+            <i class="bi bi-check-circle-fill text-success"
+               style="font-size:70px;"></i>
+
+            <h2 class="fw-bold mt-3">
+                Order Placed Successfully! 🎉
+            </h2>
+
+            <p class="text-muted">
+                Your digital token is:
+            </p>
+
+            <div id="token"
+                 class="token">
+            </div>
+
+            <p>
+                Show this token at the canteen counter.
+            </p>
+
+
+            <div class="mt-4">
+
+                <a href="track-order.html"
+                   class="btn btn-warning me-2">
+
+                    <i class="bi bi-geo-alt"></i>
+                    Track Order
+
+                </a>
+
+                <a href="orders.html"
+                   class="btn btn-outline-dark">
+
+                    <i class="bi bi-clock-history"></i>
+                    My Orders
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+let cart =
+    JSON.parse(localStorage.getItem("canteenCart")) || [];
+
+
+// DISPLAY SUMMARY
+
+function displaySummary() {
+
+    const summaryItems =
+        document.getElementById("summaryItems");
+
+    let subtotal = 0;
+
+    summaryItems.innerHTML = "";
+
+
+    if (cart.length === 0) {
+
+        summaryItems.innerHTML = `
+            <p class="text-muted">
+                Your cart is empty.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    cart.forEach(function(item) {
+
+        let itemTotal =
+            item.price * item.quantity;
+
+        subtotal += itemTotal;
+
+
+        summaryItems.innerHTML += `
+
+            <div class="summary-row">
+
+                <span>
+                    ${item.name}
+                    × ${item.quantity}
+                </span>
+
+                <strong>
+                    ₹${itemTotal}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    let total = subtotal + 5;
+
+
+    document.getElementById("subtotal").textContent =
+        "₹" + subtotal;
+
+    document.getElementById("total").textContent =
+        "₹" + total;
+
+}
+
+
+displaySummary();
+
+
+// PLACE ORDER
+
+document.getElementById("orderForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+
+    const studentName =
+        document.getElementById("studentName").value;
+
+    const studentId =
+        document.getElementById("studentId").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const counter =
+        document.getElementById("counter").value;
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+    const instructions =
+        document.getElementById("instructions").value;
+
+
+    let subtotal = 0;
+
+
+    cart.forEach(function(item) {
+
+        subtotal +=
+            item.price * item.quantity;
+
+    });
+
+
+    let total = subtotal + 5;
+
+
+    // Generate token
+
+    let token =
+        "A-" +
+        Math.floor(100 + Math.random() * 900);
+
+
+    // Create order
+
+    let order = {
+
+        id: Date.now(),
+
+        token: token,
+
+        studentName: studentName,
+
+        studentId: studentId,
+
+        phone: phone,
+
+        counter: counter,
+
+        payment: payment,
+
+        instructions: instructions,
+
+        items: cart,
+
+        subtotal: subtotal,
+
+        total: total,
+
+        status: "ORDER PLACED",
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    // Get previous orders
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("canteenOrders")
+        ) || [];
+
+
+    orders.push(order);
+
+
+    // Save order
+
+    localStorage.setItem(
+        "canteenOrders",
+        JSON.stringify(orders)
+    );
+
+
+    // Clear cart
+
+    localStorage.removeItem("canteenCart");
+
+
+    // Hide checkout
+
+    document.getElementById(
+        "checkoutContent"
+    ).style.display = "none";
+
+
+    // Show success
+
+    document.getElementById(
+        "successBox"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "token"
+    ).textContent = token;
+
+});
+
+</script>
+
+
+</body>
+</html>

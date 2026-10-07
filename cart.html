@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Cart | Smart Canteen</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #fffafc;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-item {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .food-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .remove-btn {
+            color: red;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            🍴 Smart Canteen
+        </a>
+
+        <a href="menu.html" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> Back to Menu
+        </a>
+    </div>
+</nav>
+
+
+<!-- CART -->
+<div class="container py-5">
+
+    <h6 class="text-muted">
+        <i class="bi bi-cart"></i> Your Selection
+    </h6>
+
+    <h1 class="fw-bold mb-2">Your Cart</h1>
+
+    <p class="text-muted">
+        Check your items before placing the order.
+    </p>
+
+    <div class="row mt-4">
+
+        <!-- CART ITEMS -->
+        <div class="col-lg-8">
+
+            <div id="cartItems"></div>
+
+            <div id="emptyCart" class="text-center py-5" style="display:none;">
+                <i class="bi bi-cart-x fs-1 text-muted"></i>
+
+                <h4 class="mt-3">
+                    Your cart is empty
+                </h4>
+
+                <p class="text-muted">
+                    Add some delicious food from the menu.
+                </p>
+
+                <a href="menu.html" class="btn btn-warning">
+                    Browse Menu
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+        <div class="col-lg-4">
+
+            <div class="summary">
+
+                <h3 class="fw-bold mb-4">
+                    Order Summary
+                </h3>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Items</span>
+                    <span id="itemCount">0</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Subtotal</span>
+                    <span>₹<span id="subtotal">0</span></span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Service Fee</span>
+                    <span>₹<span id="serviceFee">5</span></span>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between mb-4">
+                    <strong>Total</strong>
+                    <strong>₹<span id="total">0</span></strong>
+                </div>
+
+                <button
+                    id="checkoutBtn"
+                    class="btn btn-warning w-100"
+                    onclick="proceedToCheckout()">
+
+                    Proceed to Checkout
+                    <i class="bi bi-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+    // GET CART FROM LOCAL STORAGE
+    let cart = JSON.parse(localStorage.getItem("canteenCart")) || [];
+
+
+    // DISPLAY CART
+    function displayCart() {
+
+        const cartItems = document.getElementById("cartItems");
+        const emptyCart = document.getElementById("emptyCart");
+
+        cartItems.innerHTML = "";
+
+        if (cart.length === 0) {
+
+            emptyCart.style.display = "block";
+
+            document.getElementById("itemCount").textContent = "0";
+            document.getElementById("subtotal").textContent = "0";
+            document.getElementById("total").textContent = "0";
+
+            return;
+        }
+
+        emptyCart.style.display = "none";
+
+
+        let subtotal = 0;
+        let itemCount = 0;
+
+
+        cart.forEach((item, index) => {
+
+            subtotal += item.price * item.quantity;
+            itemCount += item.quantity;
+
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-2">
+                            <img
+                                src="${getFoodImage(item.name)}"
+                                class="food-img">
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <h5 class="fw-bold mb-1">
+                                ${item.name}
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                ₹${item.price}
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <button
+                                class="quantity-btn"
+                                onclick="changeQuantity(${index}, -1)">
+                                −
+                            </button>
+
+                            <span class="mx-2 fw-bold">
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                class="quantity-btn"
+                                onclick="changeQuantity(${index}, 1)">
+                                +
+                            </button>
+
+                        </div>
+
+                        <div class="col-md-2 fw-bold">
+
+                            ₹${item.price * item.quantity}
+
+                        </div>
+
+                        <div class="col-md-1">
+
+                            <button
+                                class="remove-btn"
+                                onclick="removeItem(${index})">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+
+        document.getElementById("itemCount").textContent = itemCount;
+
+        document.getElementById("subtotal").textContent = subtotal;
+
+        document.getElementById("total").textContent = subtotal + 5;
+    }
+
+
+    // CHANGE QUANTITY
+    function changeQuantity(index, change) {
+
+        cart[index].quantity += change;
+
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+
+        localStorage.setItem(
+            "canteenCart",
+            JSON.stringify(cart)
+        );
+
+        displayCart();
+    }
+
+
+    // REMOVE ITEM
+    function removeItem(index) {
+
+        cart.splice(index, 1);
+
+        localStorage.setItem(
+            "canteenCart",
+            JSON.stringify(cart)
+        );
+
+        displayCart();
+    }
+
+
+    // FOOD IMAGES
+    function getFoodImage(name) {
+
+        const images = {
+
+            "Idly & Sambar":
+            "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300",
+
+            "Masala Dosa":
+            "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=300",
+
+            "Chicken Biryani":
+            "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=300",
+
+            "South Indian Meals":
+            "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300",
+
+            "Samosa":
+            "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=300",
+
+            "Veg Burger":
+            "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300",
+
+            "Masala Tea":
+            "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300",
+
+            "Fresh Orange Juice":
+            "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300"
+        };
+
+        return images[name] ||
+               "https://via.placeholder.com/300";
+    }
+
+
+    // CHECKOUT
+    function proceedToCheckout() {
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty!");
+
+            return;
+        }
+
+        window.location.href = "checkout.html";
+    }
+
+
+    // LOAD CART
+    displayCart();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Menu | Smart Canteen</title>
+
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =================================================
+           GLOBAL
+        ================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 76px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        /* =================================================
+           FIXED NAVBAR
+        ================================================= */
+
+        .navbar-custom {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            width: 100%;
+            height: 76px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #eeeeee;
+
+            box-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.05);
+
+            z-index: 99999;
+        }
+
+        .navbar-inner {
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        /* =================================================
+           BRAND
+        ================================================= */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #111827;
+
+            font-size: 21px;
+
+            font-weight: 800;
+        }
+
+        .brand:hover {
+            color: #111827;
+        }
+
+        .brand-icon {
+
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            font-size: 17px;
+        }
+
+
+        /* =================================================
+           NAV LINKS
+        ================================================= */
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+        }
+
+        .nav-link-custom {
+
+            color: #374151;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+        .nav-link-custom:hover {
+
+            color: #f59a00;
+        }
+
+        .nav-link-custom.active {
+
+            color: #f59a00;
+
+            font-weight: 700;
+        }
+
+
+        /* =================================================
+           CART
+        ================================================= */
+
+        .cart-button {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            background: #fff8eb;
+
+            color: #374151;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .cart-button:hover {
+
+            color: #f59a00;
+        }
+
+        .cart-badge {
+
+            position: absolute;
+
+            top: -7px;
+            right: -7px;
+
+            min-width: 19px;
+            height: 19px;
+
+            padding: 0 5px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50px;
+
+            background: #f59a00;
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+
+        /* =================================================
+           ORDER BUTTON
+        ================================================= */
+
+        .order-now-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 11px 18px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #f59a00;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .order-now-btn:hover {
+
+            background: #e88900;
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+        
+
+
+        /* =================================================
+           MENU HEADER
+        ================================================= */
+
+        .menu-header {
+
+            padding: 45px 0 22px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+        }
+
+        .menu-header h1 {
+
+            margin: 0 0 8px;
+
+            color: #111827;
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+        }
+
+        .menu-header p {
+
+            margin: 0;
+
+            color: #6b7280;
+
+            font-size: 15px;
+        }
+
+
+        /* =================================================
+           FILTERS
+        ================================================= */
+
+        .filter-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 50px;
+
+            padding: 10px 18px;
+
+            background: #ffffff;
+
+            color: #374151;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .filter-btn:hover {
+
+            border-color: #f59a00;
+
+            color: #f59a00;
+        }
+
+        .filter-btn.active {
+
+            background: #f59a00;
+
+            border-color: #f59a00;
+
+            color: #ffffff;
+        }
+
+
+        /* =================================================
+           FOOD CARD
+        ================================================= */
+
+        .food-card {
+
+            height: 100%;
+
+            overflow: hidden;
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.055);
+
+            transition: 0.2s;
+        }
+
+        .food-card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.10);
+        }
+
+
+        .food-image {
+
+            width: 100%;
+
+            height: 190px;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #f5f5f5;
+        }
+
+
+        .food-content {
+
+            padding: 17px;
+        }
+
+
+        .food-title {
+
+            margin: 0;
+
+            color: #111827;
+
+            font-size: 17px;
+
+            font-weight: 800;
+        }
+
+
+        .food-description {
+
+            min-height: 38px;
+
+            margin: 8px 0;
+
+            color: #6b7280;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =================================================
+           CATEGORY
+        ================================================= */
+
+        .category-badge {
+
+            display: inline-block;
+
+            padding: 4px 8px;
+
+            border-radius: 5px;
+
+            background: #fff4df;
+
+            color: #d88900;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: lowercase;
+        }
+
+
+        /* =================================================
+           RATING
+        ================================================= */
+
+        .food-rating {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin: 7px 0 8px;
+
+            font-size: 12px;
+        }
+
+        .stars {
+
+            color: #f59a00;
+
+            font-size: 14px;
+
+            letter-spacing: 1px;
+        }
+
+        .rating-number {
+
+            color: #374151;
+
+            font-weight: 800;
+        }
+
+        .rating-count {
+
+            color: #9ca3af;
+        }
+
+
+        /* =================================================
+           AVAILABLE
+        ================================================= */
+
+        .available {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-bottom: 10px;
+
+            color: #39935a;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* =================================================
+           PRICE + ADD
+        ================================================= */
+
+        .food-bottom {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+        }
+
+        .food-price {
+
+            color: #111827;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+        .add-btn {
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 9px 17px;
+
+            background: #f59a00;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+
+            background: #e88900;
+        }
+
+
+        /* =================================================
+           QUANTITY
+        ================================================= */
+
+        .quantity-control {
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid #f59a00;
+
+            border-radius: 9px;
+        }
+
+        .quantity-control button {
+
+            width: 32px;
+
+            height: 32px;
+
+            border: none;
+
+            background: #fff4df;
+
+            color: #e88900;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .quantity-control button:hover {
+
+            background: #f59a00;
+
+            color: #ffffff;
+        }
+
+        .quantity-control span {
+
+            min-width: 32px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        /* =================================================
+           ABOUT SECTION
+        ================================================= */
+
+        .about-section {
+
+            position: relative;
+
+            clear: both;
+
+            scroll-margin-top: 90px;
+
+            margin-top: 100px;
+
+            padding: 80px 0;
+
+            border-top: 1px solid #eeeeee;
+        }
+
+        .about-label {
+
+            color: #f59a00;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .about-section h2 {
+
+            margin: 12px 0 20px;
+
+            color: #111827;
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+        }
+
+        .about-section h2 span {
+
+            color: #f59a00;
+        }
+
+        .about-section p {
+
+            color: #6b7280;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =================================================
+           ABOUT FEATURES
+        ================================================= */
+
+        .about-features {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .about-feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .about-feature-icon {
+
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #fff4df;
+
+            color: #f59a00;
+
+            font-size: 18px;
+        }
+
+        .about-feature strong {
+
+            display: block;
+
+            color: #111827;
+
+            font-size: 14px;
+        }
+
+        .about-feature small {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+
+        /* =================================================
+           ABOUT RIGHT CARD
+        ================================================= */
+
+        .about-card {
+
+            padding: 45px;
+
+            background: #fff8eb;
+
+            border: 1px solid #ffe5b5;
+
+            border-radius: 25px;
+
+            text-align: center;
+        }
+
+        .about-icon {
+
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background: #f59a00;
+
+            color: #ffffff;
+
+            font-size: 28px;
+        }
+
+        .about-card h3 {
+
+            color: #111827;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+
+        /* =================================================
+           ABOUT STATS
+        ================================================= */
+
+        .about-stat-row {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            gap: 15px;
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #f0d9ad;
+        }
+
+        .about-stat-row div {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+        }
+
+        .about-stat-row strong {
+
+            color: #f59a00;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+        .about-stat-row span {
+
+            color: #6b7280;
+
+            font-size: 11px;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        .footer {
+
+            margin-top: 60px;
+
+            padding: 35px 0;
+
+            background: #111827;
+
+            color: #ffffff;
+        }
+
+        .footer h5 {
+
+            font-weight: 800;
+        }
+
+        .footer p {
+
+            margin: 5px 0 0;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .navbar-custom {
+
+                height: 68px;
+            }
+
+            body {
+
+                padding-top: 68px;
+            }
+
+            .nav-links {
+
+                gap: 12px;
+            }
+
+            .nav-link-custom {
+
+                display: none;
+            }
+
+            .menu-header {
+
+                padding-top: 35px;
+            }
+
+            .menu-header h1 {
+
+                font-size: 34px;
+            }
+        }
+
+
+        @media (max-width: 576px) {
+
+            .brand {
+
+                font-size: 18px;
+            }
+
+            .brand-icon {
+
+                width: 32px;
+                height: 32px;
+            }
+
+            .menu-header h1 {
+
+                font-size: 30px;
+            }
+
+            .menu-header p {
+
+                font-size: 13px;
+            }
+
+            .filter-btn {
+
+                padding: 8px 13px;
+
+                font-size: 12px;
+            }
+
+            .food-image {
+
+                height: 210px;
+            }
+
+            .about-section {
+
+                margin-top: 60px;
+
+                padding: 50px 0;
+            }
+
+            .about-section h2 {
+
+                font-size: 32px;
+            }
+
+            .about-card {
+
+                padding: 30px 20px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================= -->
+
+    <nav class="navbar-custom">
+
+        <div class="container navbar-inner">
+
+
+            <!-- BRAND -->
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon">
+                    <i class="bi bi-cup-hot-fill"></i>
+                </span>
+
+                Smart Canteen
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a
+                    href="index.html"
+                    class="nav-link-custom"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="menu.html"
+                    class="nav-link-custom active"
+                >
+                    Menu
+                </a>
+
+
+                <a
+                    href="orders.html"
+                    class="nav-link-custom"
+                >
+                    My Orders
+                </a>
+
+
+                <a
+                    href="#about"
+                    class="nav-link-custom"
+                >
+                    About
+                </a>
+
+
+                <!-- CART -->
+
+                <a
+                    href="cart.html"
+                    class="cart-button"
+                >
+
+                    <i class="bi bi-cart3"></i>
+
+                    Cart
+
+                    <span
+                        id="cartCount"
+                        class="cart-badge"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="nav-link-custom"
+                >
+                    Logout
+                </a>
+
+
+                <!-- ONLY ONE ORDER NOW BUTTON -->
+
+                <a
+                    href="cart.html"
+                    class="order-now-btn"
+                >
+
+                    <i class="bi bi-cart-check"></i>
+
+                    Order Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =================================================
+         MAIN MENU
+    ================================================= -->
+
+    <main class="container">
+
+
+        <!-- MENU HEADER -->
+
+        <section class="menu-header">
+
+            <div>
+
+                <h1>
+                    Today's Menu 🍽️
+                </h1>
+
+                <p>
+                    Fresh food, delicious taste and quick service.
+                    Order your favourite food before the rush!
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================= -->
+
+        <div class="filter-container">
+
+            <button
+                class="filter-btn active"
+                onclick="filterFood('all', this)"
+            >
+                All
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterFood('breakfast', this)"
+            >
+                🍳 Breakfast
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterFood('lunch', this)"
+            >
+                🍛 Lunch
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterFood('snacks', this)"
+            >
+                🍟 Snacks
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterFood('drinks', this)"
+            >
+                🥤 Drinks
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FOOD GRID
+
+             IMPORTANT:
+             About is OUTSIDE this div.
+        ================================================= -->
+
+        <div
+            class="row g-4"
+            id="foodContainer"
+        ></div>
+
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================= -->
+
+        <section
+            id="about"
+            class="about-section"
+        >
+
+            <div class="row align-items-center g-5">
+
+
+                <!-- LEFT -->
+
+                <div class="col-lg-6">
+
+                    <span class="about-label">
+                        ABOUT SMART CANTEEN
+                    </span>
+
+
+                    <h2>
+
+                        Skip the Queue.<br>
+
+                        <span>
+                            Order Smart.
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+                        Smart Canteen is a digital pre-order
+                        system designed to make campus food
+                        ordering simple, fast and convenient.
+                    </p>
+
+
+                    <p>
+                        Students can browse the menu, check food
+                        ratings, add their favourite meals to the
+                        cart and place orders without waiting in
+                        long queues.
+                    </p>
+
+
+
+                    <!-- FEATURES -->
+
+                    <div class="about-features">
+
+
+                        <div class="about-feature">
+
+                            <div class="about-feature-icon">
+
+                                <i class="bi bi-clock"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Save Time
+                                </strong>
+
+                                <small>
+                                    Avoid long canteen queues.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="about-feature">
+
+                            <div class="about-feature-icon">
+
+                                <i class="bi bi-phone"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Easy Ordering
+                                </strong>
+
+                                <small>
+                                    Order from your phone or laptop.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="about-feature">
+
+                            <div class="about-feature-icon">
+
+                                <i class="bi bi-ticket-perforated"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Digital Token
+                                </strong>
+
+                                <small>
+                                    Get a token and collect when ready.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIGHT -->
+
+                <div class="col-lg-6">
+
+                    <div class="about-card">
+
+
+                        <div class="about-icon">
+
+                            <i class="bi bi-cup-hot-fill"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Smart Food Ordering
+                        </h3>
+
+
+                        <p>
+                            Order your favourite campus meals
+                            before reaching the canteen.
+                        </p>
+
+
+
+                        <div class="about-stat-row">
+
+
+                            <div>
+
+                                <strong>
+                                    18+
+                                </strong>
+
+                                <span>
+                                    Food Items
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    4.5★
+                                </strong>
+
+                                <span>
+                                    Average Rating
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Fast
+                                </strong>
+
+                                <span>
+                                    Pre-Order
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <footer class="footer">
+
+        <div class="container text-center">
+
+            <h5>
+                Smart Canteen
+            </h5>
+
+            <p>
+                Skip the queue. Order smart. Eat on time.
+            </p>
+
+        </div>
+
+    </footer>
+    <script>
+
+/* =====================================================
+   DEFAULT FOOD ITEMS
+   ===================================================== */
+
+const defaultFood = [
+
+    {
+        id: 1,
+        name: "Idly & Sambar",
+        price: 40,
+        category: "breakfast",
+        image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
+        rating: 4.5,
+        reviews: 126,
+        description: "Soft idly served with delicious hot sambar."
+    },
+
+    {
+        id: 2,
+        name: "Masala Dosa",
+        price: 60,
+        category: "breakfast",
+        image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600",
+        rating: 4.7,
+        reviews: 184,
+        description: "Crispy dosa filled with tasty masala."
+    },
+
+    {
+        id: 3,
+        name: "Poori Masala",
+        price: 50,
+        category: "breakfast",
+        image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600",
+        rating: 4.5,
+        reviews: 96,
+        description: "Fluffy poori served with flavourful masala."
+    },
+
+    {
+        id: 4,
+        name: "Vada Sambar",
+        price: 40,
+        category: "breakfast",
+        image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600",
+        rating: 4.6,
+        reviews: 115,
+        description: "Crispy vada with hot and tasty sambar."
+    },
+
+    {
+        id: 5,
+        name: "Chicken Biryani",
+        price: 120,
+        category: "lunch",
+        image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600",
+        rating: 4.8,
+        reviews: 245,
+        description: "Aromatic biryani with tender chicken."
+    },
+
+    {
+        id: 6,
+        name: "South Indian Meals",
+        price: 90,
+        category: "lunch",
+        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600",
+        rating: 4.6,
+        reviews: 152,
+        description: "Complete traditional South Indian meal."
+    },
+
+    {
+        id: 7,
+        name: "veg curry",
+        price: 100,
+        category: "lunch",
+        image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600",
+        rating: 4.4,
+        reviews: 87,
+        description: "Delicious vegetarian curry prepared fresh."
+    },
+
+    {
+        id: 8,
+        name: "Paneer Rice",
+        price: 100,
+        category: "lunch",
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
+        rating: 4.5,
+        reviews: 109,
+        description: "Flavourful rice served with soft paneer."
+    },
+
+    {
+        id: 9,
+        name: "Samosa",
+        price: 25,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600",
+        rating: 4.6,
+        reviews: 210,
+        description: "Crispy samosa with a delicious filling."
+    },
+
+    {
+        id: 10,
+        name: "Veg Burger",
+        price: 70,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+        rating: 4.4,
+        reviews: 132,
+        description: "Fresh vegetable burger with tasty toppings."
+    },
+
+    {
+        id: 11,
+        name: "French Fries",
+        price: 60,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
+        rating: 4.5,
+        reviews: 168,
+        description: "Crispy golden fries served hot."
+    },
+
+    {
+        id: 12,
+        name: "Pizza",
+        price: 100,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",
+        rating: 4.7,
+        reviews: 198,
+        description: "Cheesy pizza with fresh toppings."
+    },
+
+    {
+        id: 13,
+        name: "Sandwich",
+        price: 60,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600",
+        rating: 4.3,
+        reviews: 91,
+        description: "Fresh sandwich packed with tasty fillings."
+    },
+
+    {
+        id: 14,
+        name: "Chicken pizza",
+        price: 80,
+        category: "snacks",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",
+        rating: 4.6,
+        reviews: 143,
+        description: "Delicious pizza topped with chicken."
+    },
+
+    {
+        id: 15,
+        name: "Masala Tea",
+        price: 15,
+        category: "drinks",
+        image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",
+        rating: 4.5,
+        reviews: 121,
+        description: "Hot tea with aromatic Indian spices."
+    },
+
+    {
+        id: 16,
+        name: "Fresh Orange Juice",
+        price: 50,
+        category: "drinks",
+        image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600",
+        rating: 4.7,
+        reviews: 114,
+        description: "Fresh and refreshing orange juice."
+    },
+
+    {
+        id: 17,
+        name: "Cold Coffee",
+        price: 60,
+        category: "drinks",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600",
+        rating: 4.6,
+        reviews: 157,
+        description: "Chilled creamy coffee for a refreshing break."
+    },
+
+    {
+        id: 18,
+        name: "Fresh Lime Juice",
+        price: 40,
+        category: "drinks",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600",
+        rating: 4.5,
+        reviews: 103,
+        description: "Refreshing lime juice served chilled."
+    }
+
+];
+
+
+
+/* =====================================================
+   ADMIN FOOD
+   ===================================================== */
+
+let adminFood = [];
+
+try {
+
+    adminFood =
+        JSON.parse(
+            localStorage.getItem("canteenFoodItems")
+        ) || [];
+
+} catch (error) {
+
+    adminFood = [];
+
+}
+
+
+/* =====================================================
+   COMBINE FOOD
+   ===================================================== */
+
+let allFood = [
+    ...defaultFood,
+    ...adminFood
+];
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+let cart = [];
+
+try {
+
+    cart =
+        JSON.parse(
+            localStorage.getItem("canteenCart")
+        ) || [];
+
+} catch (error) {
+
+    cart = [];
+
+}
+
+
+/* =====================================================
+   CURRENT FILTER
+   ===================================================== */
+
+let currentCategory = "all";
+
+
+/* =====================================================
+   ELEMENTS
+   ===================================================== */
+
+const foodContainer =
+    document.getElementById("foodContainer");
+
+const cartCount =
+    document.getElementById("cartCount");
+
+
+
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+
+/* =====================================================
+   DISPLAY FOOD
+   ===================================================== */
+
+function displayFood(category = "all") {
+
+    currentCategory = category;
+
+    foodContainer.innerHTML = "";
+
+
+    const filteredFood =
+        category === "all"
+            ? allFood
+            : allFood.filter(
+                item =>
+                    String(item.category).toLowerCase()
+                    === category.toLowerCase()
+            );
+
+
+    if (filteredFood.length === 0) {
+
+        foodContainer.innerHTML = `
+
+            <div class="col-12 text-center py-5">
+
+                <h4>
+                    No food items found
+                </h4>
+
+                <p class="text-muted">
+                    Try another category.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    filteredFood.forEach(item => {
+
+        const cartItem =
+            cart.find(
+                cartFood =>
+                    cartFood.name === item.name
+            );
+
+
+        const quantity =
+            cartItem
+                ? cartItem.quantity
+                : 0;
+
+
+        const stars =
+            "★".repeat(
+                Math.round(Number(item.rating) || 4)
+            );
+
+
+        const rating =
+            Number(item.rating) || 4.5;
+
+
+        const reviews =
+            Number(item.reviews) || 0;
+
+
+        const image =
+            item.image ||
+            "https://via.placeholder.com/600x400?text=Food";
+
+
+        foodContainer.innerHTML += `
+
+            <div class="col-12 col-sm-6 col-lg-3">
+
+                <div class="food-card">
+
+                    <img
+                        src="${escapeHTML(image)}"
+                        class="food-image"
+                        alt="${escapeHTML(item.name)}"
+                    >
+
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between align-items-start gap-2">
+
+                            <h3 class="food-title">
+                                ${escapeHTML(item.name)}
+                            </h3>
+
+                            <span class="category-badge">
+                                ${escapeHTML(item.category)}
+                            </span>
+
+                        </div>
+
+
+                        <p class="food-description">
+                            ${escapeHTML(
+                                item.description ||
+                                "Fresh and delicious food prepared for you."
+                            )}
+                        </p>
+
+
+                        <div class="food-rating">
+
+                            <span class="stars">
+                                ${stars}
+                            </span>
+
+                            <span class="rating-number">
+                                ${rating.toFixed(1)}
+                            </span>
+
+                            <span class="rating-count">
+                                (${reviews})
+                            </span>
+
+                        </div>
+
+
+                        <div class="available">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Available
+
+                        </div>
+
+
+                        <div class="food-bottom">
+
+                            <span class="food-price">
+                                ₹${Number(item.price).toFixed(0)}
+                            </span>
+
+
+                            ${
+                                quantity > 0
+
+                                ?
+
+                                `
+                                <div class="quantity-control">
+
+                                    <button
+                                        onclick="decreaseQuantity('${escapeHTML(item.name)}')"
+                                    >
+                                        −
+                                    </button>
+
+                                    <span>
+                                        ${quantity}
+                                    </span>
+
+                                    <button
+                                        onclick="increaseQuantity('${escapeHTML(item.name)}')"
+                                    >
+                                        +
+                                    </button>
+
+                                </div>
+                                `
+
+                                :
+
+                                `
+                                <button
+                                    class="add-btn"
+                                    onclick="addToCart('${escapeHTML(item.name)}')"
+                                >
+                                    <i class="bi bi-cart-plus"></i>
+                                    Add
+                                </button>
+                                `
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+
+/* =====================================================
+   FILTER
+   ===================================================== */
+
+function filterFood(category, button) {
+
+    currentCategory = category;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    displayFood(category);
+
+}
+
+
+
+/* =====================================================
+   ADD TO CART
+   ===================================================== */
+
+function addToCart(name) {
+
+    const food =
+        allFood.find(
+            item => item.name === name
+        );
+
+
+    if (!food) return;
+
+
+    const existing =
+        cart.find(
+            item => item.name === name
+        );
+
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+
+            name: food.name,
+
+            price: Number(food.price),
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    saveCart();
+
+
+    displayFood(currentCategory);
+
+}
+
+
+
+/* =====================================================
+   INCREASE
+   ===================================================== */
+
+function increaseQuantity(name) {
+
+    const item =
+        cart.find(
+            cartItem =>
+                cartItem.name === name
+        );
+
+
+    if (item) {
+
+        item.quantity++;
+
+    }
+
+
+    saveCart();
+
+
+    displayFood(currentCategory);
+
+}
+
+
+
+/* =====================================================
+   DECREASE
+   ===================================================== */
+
+function decreaseQuantity(name) {
+
+    const item =
+        cart.find(
+            cartItem =>
+                cartItem.name === name
+        );
+
+
+    if (!item) return;
+
+
+    item.quantity--;
+
+
+    if (item.quantity <= 0) {
+
+        cart =
+            cart.filter(
+                cartItem =>
+                    cartItem.name !== name
+            );
+
+    }
+
+
+    saveCart();
+
+
+    displayFood(currentCategory);
+
+}
+
+
+
+/* =====================================================
+   SAVE CART
+   ===================================================== */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "canteenCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+}
+
+
+
+/* =====================================================
+   CART COUNT
+   ===================================================== */
+
+function updateCartCount() {
+
+    const total =
+        cart.reduce(
+            (sum, item) =>
+                sum + Number(item.quantity || 0),
+            0
+        );
+
+
+    cartCount.textContent = total;
+
+}
+
+
+
+/* =====================================================
+   INITIAL LOAD
+   ===================================================== */
+
+displayFood("all");
+
+updateCartCount();
+
+</script>
+
+
+</body>
+
+</html>

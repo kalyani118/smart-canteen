@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Smart Canteen</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#fffaf7;
+    font-family:Arial,sans-serif;
+    color:#222;
+}
+
+/* NAVBAR */
+
+.admin-navbar{
+    background:white;
+    border-bottom:1px solid #eeeeee;
+    padding:14px 0;
+}
+
+.brand{
+    text-decoration:none;
+    color:#222;
+    font-size:21px;
+    font-weight:800;
+}
+
+.brand-icon{
+    color:#ff7a00;
+    margin-right:7px;
+}
+
+.nav-btn{
+    border-radius:10px;
+    padding:9px 17px;
+    font-weight:600;
+}
+
+/* ORANGE BUTTON */
+
+.btn-orange{
+    background:#ff7a00;
+    border:none;
+    color:white;
+    border-radius:10px;
+    font-weight:700;
+    padding:10px 18px;
+}
+
+.btn-orange:hover{
+    background:#e96d00;
+    color:white;
+}
+
+/* HEADER */
+
+.page-header{
+    padding:38px 0 25px;
+}
+
+.page-header h1{
+    font-size:32px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.page-header p{
+    color:#777;
+    margin:0;
+}
+
+/* STAT CARDS */
+
+.stat-card{
+    background:white;
+    border:1px solid #eeeeee;
+    border-radius:18px;
+    padding:20px;
+    height:100%;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.stat-icon{
+    width:46px;
+    height:46px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    margin-bottom:13px;
+}
+
+.icon-orange{
+    background:#fff0e2;
+    color:#ff7a00;
+}
+
+.icon-yellow{
+    background:#fff7dc;
+    color:#e9a400;
+}
+
+.icon-red{
+    background:#ffe8e5;
+    color:#e84c3d;
+}
+
+.icon-green{
+    background:#e7f8ed;
+    color:#28a745;
+}
+
+.icon-blue{
+    background:#e8f1ff;
+    color:#2673dd;
+}
+
+.stat-title{
+    color:#777;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.stat-number{
+    font-size:27px;
+    font-weight:800;
+}
+
+/* ANALYTICS */
+
+.analytics-title{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.analytics-card{
+    background:white;
+    border:1px solid #eeeeee;
+    border-radius:18px;
+    padding:20px;
+    height:100%;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.analytics-label{
+    color:#777;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.analytics-value{
+    font-size:27px;
+    font-weight:800;
+}
+
+.profit-value{
+    color:#28a745;
+}
+
+/* SECTION */
+
+.section-card{
+    background:white;
+    border:1px solid #eeeeee;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.section-title{
+    font-size:21px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.section-subtitle{
+    color:#777;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+/* FORM */
+
+.form-label{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.form-control,
+.form-select{
+    border:1px solid #ddd;
+    border-radius:10px;
+    min-height:45px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#ff7a00;
+    box-shadow:0 0 0 .2rem rgba(255,122,0,.12);
+}
+
+/* FOOD */
+
+.food-admin-card{
+    background:white;
+    border:1px solid #eeeeee;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.food-admin-img{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.food-name{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.food-category{
+    display:inline-block;
+    background:#fff1e5;
+    color:#e96d00;
+    border-radius:20px;
+    padding:4px 10px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.food-price{
+    font-size:17px;
+    font-weight:800;
+}
+
+/* ORDERS */
+
+.order-card{
+    background:white;
+    border:1px solid #eeeeee;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.token{
+    display:inline-block;
+    background:#fff1e5;
+    color:#e96d00;
+    border-radius:8px;
+    padding:6px 10px;
+    font-weight:800;
+}
+
+.order-info{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.order-items{
+    background:#fafafa;
+    border-radius:10px;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+.order-total{
+    font-size:17px;
+    font-weight:800;
+}
+
+.status-select{
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* EMPTY */
+
+.empty-state{
+    text-align:center;
+    padding:35px 20px;
+    color:#777;
+}
+
+.empty-state i{
+    font-size:42px;
+    color:#ffb06d;
+}
+
+/* FOOTER */
+
+.admin-footer{
+    margin-top:55px;
+    padding:25px 0;
+    background:white;
+    border-top:1px solid #eee;
+    text-align:center;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    .page-header{
+        padding-top:25px;
+    }
+
+    .page-header h1{
+        font-size:27px;
+    }
+
+    .section-card{
+        padding:18px;
+    }
+
+    .food-admin-img{
+        width:65px;
+        height:65px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="admin-navbar">
+
+<div class="container">
+
+<div class="d-flex align-items-center justify-content-between">
+
+<a href="index.html" class="brand">
+
+<span class="brand-icon">
+<i class="bi bi-shop"></i>
+</span>
+
+Smart Canteen
+
+</a>
+
+<div class="d-flex align-items-center gap-2">
+
+<a href="menu.html"
+class="btn btn-outline-secondary nav-btn">
+
+<i class="bi bi-grid"></i>
+View Menu
+
+</a>
+
+<a href="index.html"
+class="btn btn-outline-danger nav-btn"
+onclick="logoutAdmin()">
+
+<i class="bi bi-box-arrow-right"></i>
+Logout
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+<div class="page-header">
+
+<h1>Admin Dashboard</h1>
+
+<p>
+Manage food items, customer orders and business analytics
+</p>
+
+</div>
+
+
+<!-- MAIN STATISTICS -->
+
+<div class="row g-4 mb-5">
+
+<div class="col-6 col-lg-3">
+
+<div class="stat-card">
+
+<div class="stat-icon icon-orange">
+<i class="bi bi-receipt"></i>
+</div>
+
+<div class="stat-title">
+Total Orders
+</div>
+
+<div class="stat-number"
+id="totalOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-lg-3">
+
+<div class="stat-card">
+
+<div class="stat-icon icon-yellow">
+<i class="bi bi-clock"></i>
+</div>
+
+<div class="stat-title">
+Pending
+</div>
+
+<div class="stat-number"
+id="pendingOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-lg-3">
+
+<div class="stat-card">
+
+<div class="stat-icon icon-red">
+<i class="bi bi-fire"></i>
+</div>
+
+<div class="stat-title">
+Preparing
+</div>
+
+<div class="stat-number"
+id="preparingOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-lg-3">
+
+<div class="stat-card">
+
+<div class="stat-icon icon-green">
+<i class="bi bi-check-circle"></i>
+</div>
+
+<div class="stat-title">
+Ready
+</div>
+
+<div class="stat-number"
+id="readyOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BUSINESS ANALYTICS -->
+
+<div class="analytics-title">
+
+<i class="bi bi-bar-chart-fill"
+style="color:#ff7a00;"></i>
+
+Business Analytics
+
+</div>
+
+
+<div class="row g-4 mb-5">
+
+
+<!-- TODAY ORDERS -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-blue">
+<i class="bi bi-calendar-day"></i>
+</div>
+
+<div class="analytics-label">
+Today's Orders
+</div>
+
+<div class="analytics-value"
+id="todayOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TODAY REVENUE -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-orange">
+<i class="bi bi-currency-rupee"></i>
+</div>
+
+<div class="analytics-label">
+Today's Revenue
+</div>
+
+<div class="analytics-value"
+id="todayRevenue">
+₹0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TOTAL REVENUE -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-yellow">
+<i class="bi bi-graph-up"></i>
+</div>
+
+<div class="analytics-label">
+Total Revenue
+</div>
+
+<div class="analytics-value"
+id="totalRevenue">
+₹0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PROFIT -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-green">
+<i class="bi bi-wallet2"></i>
+</div>
+
+<div class="analytics-label">
+Estimated Profit
+</div>
+
+<div class="analytics-value profit-value"
+id="totalProfit">
+₹0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- COMPLETED -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-green">
+<i class="bi bi-check2-all"></i>
+</div>
+
+<div class="analytics-label">
+Completed Orders
+</div>
+
+<div class="analytics-value"
+id="completedOrders">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TODAY PROFIT -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-green">
+<i class="bi bi-cash-stack"></i>
+</div>
+
+<div class="analytics-label">
+Today's Profit
+</div>
+
+<div class="analytics-value profit-value"
+id="todayProfit">
+₹0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AVERAGE ORDER -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-blue">
+<i class="bi bi-calculator"></i>
+</div>
+
+<div class="analytics-label">
+Average Order Value
+</div>
+
+<div class="analytics-value"
+id="averageOrder">
+₹0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MARGIN -->
+
+<div class="col-6 col-lg-3">
+
+<div class="analytics-card">
+
+<div class="stat-icon icon-orange">
+<i class="bi bi-percent"></i>
+</div>
+
+<div class="analytics-label">
+Estimated Profit Margin
+</div>
+
+<div class="analytics-value profit-value">
+30%
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ADD FOOD -->
+
+<div class="section-card mb-5">
+
+<div class="section-title">
+
+<i class="bi bi-plus-circle text-warning"></i>
+
+Add New Food Item
+
+</div>
+
+<div class="section-subtitle">
+
+Add a new item to the student menu.
+
+</div>
+
+
+<form id="foodForm">
+
+<div class="row g-3">
+
+
+<div class="col-md-6">
+
+<label class="form-label">
+Food Name
+</label>
+
+<input
+type="text"
+id="foodName"
+class="form-control"
+placeholder="Example: Paneer Roll"
+required>
+
+</div>
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+Price (₹)
+</label>
+
+<input
+type="number"
+id="foodPrice"
+class="form-control"
+placeholder="70"
+min="1"
+required>
+
+</div>
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+Category
+</label>
+
+<select
+id="foodCategory"
+class="form-select"
+required>
+
+<option value="breakfast">
+Breakfast
+</option>
+
+<option value="lunch">
+Lunch
+</option>
+
+<option value="snacks">
+Snacks
+</option>
+
+<option value="drinks">
+Drinks
+</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-9">
+
+<label class="form-label">
+Image URL
+</label>
+
+<input
+type="url"
+id="foodImage"
+class="form-control"
+placeholder="https://example.com/food.jpg"
+required>
+
+</div>
+
+
+<div class="col-md-3 d-flex align-items-end">
+
+<button
+type="submit"
+class="btn btn-orange w-100">
+
+<i class="bi bi-plus-lg"></i>
+
+Add Food
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+
+<!-- FOOD MANAGEMENT -->
+
+<div class="section-card mb-5">
+
+<div class="section-title">
+
+<i class="bi bi-grid text-warning"></i>
+
+Food Menu Management
+
+</div>
+
+<div class="section-subtitle">
+
+Manage additional food items added to the student menu.
+
+</div>
+
+<div id="foodList"></div>
+
+</div>
+
+
+<!-- ORDERS -->
+
+<div class="section-card">
+
+<div class="section-title">
+
+<i class="bi bi-receipt text-warning"></i>
+
+Customer Orders
+
+</div>
+
+<div class="section-subtitle">
+
+View orders, revenue and update preparation status.
+
+</div>
+
+<div id="ordersList"></div>
+
+</div>
+
+</main>
+
+
+<footer class="admin-footer">
+
+<div class="container">
+
+Smart Canteen Admin Dashboard
+
+<br>
+
+<span>
+Manage food. Manage orders. Serve smarter.
+</span>
+
+</div>
+
+</footer>
+<script>
+
+let foodItems =
+JSON.parse(localStorage.getItem("canteenFoodItems")) || [];
+
+let orders =
+JSON.parse(localStorage.getItem("canteenOrders")) || [];
+
+
+/* SAVE FOOD */
+
+function saveFoodItems(){
+
+localStorage.setItem(
+"canteenFoodItems",
+JSON.stringify(foodItems)
+);
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* CATEGORY */
+
+function getCategoryName(category){
+
+const categories={
+breakfast:"Breakfast",
+lunch:"Lunch",
+snacks:"Snacks",
+drinks:"Drinks"
+};
+
+return categories[category] || category;
+
+}
+
+
+/* ADD FOOD */
+
+document
+.getElementById("foodForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const name=
+document.getElementById("foodName").value.trim();
+
+const price=
+Number(document.getElementById("foodPrice").value);
+
+const category=
+document.getElementById("foodCategory").value;
+
+const image=
+document.getElementById("foodImage").value.trim();
+
+if(!name || !price || !image){
+
+alert("Please fill all food details.");
+
+return;
+
+}
+
+foodItems.push({
+
+id:Date.now(),
+
+name:name,
+
+price:price,
+
+category:category,
+
+image:image
+
+});
+
+saveFoodItems();
+
+alert(name+" has been added to the menu!");
+
+this.reset();
+
+displayFoodItems();
+
+});
+
+
+/* DISPLAY FOOD */
+
+function displayFoodItems(){
+
+const list=
+document.getElementById("foodList");
+
+list.innerHTML="";
+
+if(foodItems.length===0){
+
+list.innerHTML=`
+
+<div class="empty-state">
+
+<i class="bi bi-egg-fried d-block"></i>
+
+<strong>No extra food items yet</strong>
+
+<p>Add food using the form above.</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+foodItems.forEach(function(food){
+
+list.innerHTML+=`
+
+<div class="food-admin-card">
+
+<div class="row align-items-center g-3">
+
+<div class="col-auto">
+
+<img
+src="${escapeHTML(food.image)}"
+class="food-admin-img"
+onerror="this.src='https://via.placeholder.com/100';">
+
+</div>
+
+<div class="col">
+
+<div class="food-name">
+${escapeHTML(food.name)}
+</div>
+
+<span class="food-category">
+${escapeHTML(getCategoryName(food.category))}
+</span>
+
+</div>
+
+<div class="col-sm-auto">
+
+<div class="food-price">
+₹${Number(food.price).toLocaleString("en-IN")}
+</div>
+
+</div>
+
+<div class="col-sm-auto">
+
+<button
+class="btn btn-outline-danger"
+onclick="deleteFood(${food.id})">
+
+<i class="bi bi-trash"></i>
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* DELETE FOOD */
+
+function deleteFood(id){
+
+const food=
+foodItems.find(item=>item.id===id);
+
+if(!food) return;
+
+if(!confirm("Delete "+food.name+"?")) return;
+
+foodItems=
+foodItems.filter(item=>item.id!==id);
+
+saveFoodItems();
+
+displayFoodItems();
+
+}
+
+
+/* GET ORDER TOTAL */
+
+function getOrderTotal(order){
+
+if(order.total){
+return Number(order.total) || 0;
+}
+
+if(order.amount){
+return Number(order.amount) || 0;
+}
+
+if(Array.isArray(order.items)){
+
+return order.items.reduce(function(total,item){
+
+const price=
+Number(item.price) || 0;
+
+const quantity=
+Number(item.quantity || item.qty || 1);
+
+return total+(price*quantity);
+
+},0);
+
+}
+
+return 0;
+
+}
+
+
+/* GET ORDER DATE */
+
+function getOrderDate(order){
+
+return order.date ||
+order.createdAt ||
+order.orderDate ||
+"";
+
+}
+
+
+/* CHECK TODAY */
+
+function isToday(order){
+
+const value=getOrderDate(order);
+
+if(!value) return false;
+
+const date=new Date(value);
+
+if(isNaN(date.getTime())) return false;
+
+const today=new Date();
+
+return date.toDateString()===today.toDateString();
+
+}
+
+
+/* STATUS */
+
+function getStatus(order){
+
+return String(
+order.status || "ORDER PLACED"
+).toUpperCase();
+
+}
+
+
+/* ANALYTICS */
+
+function updateAnalytics(){
+
+orders=
+JSON.parse(
+localStorage.getItem("canteenOrders")
+) || [];
+
+
+const totalOrders=
+orders.length;
+
+
+const todayOrders=
+orders.filter(isToday);
+
+
+const todayRevenue=
+todayOrders.reduce(
+(sum,order)=>sum+getOrderTotal(order),
+0
+);
+
+
+const totalRevenue=
+orders.reduce(
+(sum,order)=>sum+getOrderTotal(order),
+0
+);
+
+
+const completed=
+orders.filter(function(order){
+
+return getStatus(order)==="COMPLETED";
+
+}).length;
+
+
+const average=
+totalOrders
+? totalRevenue/totalOrders
+:0;
+
+
+/*
+ESTIMATED PROFIT
+
+For this prototype:
+Profit = 30% of revenue
+
+Later we can add actual food
+cost price and calculate exact profit.
+*/
+
+const totalProfit=
+totalRevenue*0.30;
+
+const todayProfit=
+todayRevenue*0.30;
+
+
+document.getElementById("totalOrders").textContent=
+totalOrders;
+
+document.getElementById("todayOrders").textContent=
+todayOrders.length;
+
+document.getElementById("todayRevenue").textContent=
+"₹"+todayRevenue.toLocaleString("en-IN");
+
+document.getElementById("totalRevenue").textContent=
+"₹"+totalRevenue.toLocaleString("en-IN");
+
+document.getElementById("totalProfit").textContent=
+"₹"+totalProfit.toLocaleString("en-IN");
+
+document.getElementById("todayProfit").textContent=
+"₹"+todayProfit.toLocaleString("en-IN");
+
+document.getElementById("completedOrders").textContent=
+completed;
+
+document.getElementById("averageOrder").textContent=
+"₹"+Math.round(average).toLocaleString("en-IN");
+
+
+/* STATUS COUNTS */
+
+const pending=
+orders.filter(function(order){
+
+const status=getStatus(order);
+
+return status==="ORDER PLACED" ||
+status==="PENDING";
+
+}).length;
+
+
+const preparing=
+orders.filter(function(order){
+
+return getStatus(order)==="PREPARING";
+
+}).length;
+
+
+const ready=
+orders.filter(function(order){
+
+return getStatus(order)==="READY";
+
+}).length;
+
+
+document.getElementById("pendingOrders").textContent=
+pending;
+
+document.getElementById("preparingOrders").textContent=
+preparing;
+
+document.getElementById("readyOrders").textContent=
+ready;
+
+}
+
+
+/* DISPLAY ORDERS */
+
+function displayOrders(){
+
+const list=
+document.getElementById("ordersList");
+
+orders=
+JSON.parse(
+localStorage.getItem("canteenOrders")
+) || [];
+
+list.innerHTML="";
+
+if(orders.length===0){
+
+list.innerHTML=`
+
+<div class="empty-state">
+
+<i class="bi bi-receipt d-block"></i>
+
+<strong>No customer orders yet</strong>
+
+<p>Orders will appear here.</p>
+
+</div>
+
+`;
+
+updateAnalytics();
+
+return;
+
+}
+
+
+orders.forEach(function(order,index){
+
+const total=
+getOrderTotal(order);
+
+const token=
+order.token ||
+order.orderToken ||
+("A-"+(100+index));
+
+
+const student=
+order.student ||
+order.studentName ||
+order.name ||
+"Student";
+
+
+const status=
+getStatus(order);
+
+
+let itemsHTML="";
+
+if(Array.isArray(order.items)){
+
+order.items.forEach(function(item){
+
+const qty=
+Number(item.quantity || item.qty || 1);
+
+const price=
+Number(item.price || 0);
+
+itemsHTML+=`
+
+<div class="d-flex justify-content-between mb-1">
+
+<span>
+${escapeHTML(item.name || "Food")}
+× ${qty}
+</span>
+
+<span>
+₹${(price*qty).toLocaleString("en-IN")}
+</span>
+
+</div>
+
+`;
+
+});
+
+}else{
+
+itemsHTML=
+"<div>Order items unavailable</div>";
+
+}
+
+
+list.innerHTML+=`
+
+<div class="order-card">
+
+<div class="row g-3 align-items-center">
+
+<div class="col-md-3">
+
+<span class="token">
+${escapeHTML(token)}
+</span>
+
+<div class="order-info mt-2">
+
+<strong>Student:</strong>
+${escapeHTML(student)}
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="order-items">
+
+${itemsHTML}
+
+</div>
+
+<div class="order-total">
+
+Total:
+₹${total.toLocaleString("en-IN")}
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<select
+class="form-select status-select"
+onchange="updateOrderStatus(${index},this.value)">
+
+<option
+${status==="ORDER PLACED"?"selected":""}>
+ORDER PLACED
+</option>
+
+<option
+${status==="ACCEPTED"?"selected":""}>
+ACCEPTED
+</option>
+
+<option
+${status==="PREPARING"?"selected":""}>
+PREPARING
+</option>
+
+<option
+${status==="READY"?"selected":""}>
+READY
+</option>
+
+<option
+${status==="COMPLETED"?"selected":""}>
+COMPLETED
+</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-2 text-md-end">
+
+<strong>
+${status}
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+updateAnalytics();
+
+}
+
+
+/* UPDATE STATUS */
+
+function updateOrderStatus(index,status){
+
+orders=
+JSON.parse(
+localStorage.getItem("canteenOrders")
+) || [];
+
+if(!orders[index]) return;
+
+orders[index].status=status;
+
+orders[index].updatedAt=
+new Date().toISOString();
+
+localStorage.setItem(
+"canteenOrders",
+JSON.stringify(orders)
+);
+
+displayOrders();
+
+}
+
+
+/* LOGOUT */
+
+function logoutAdmin(){
+
+localStorage.removeItem("loggedIn");
+
+localStorage.removeItem("isLoggedIn");
+
+localStorage.removeItem("currentUser");
+
+}
+
+
+/* START */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+displayFoodItems();
+
+displayOrders();
+
+updateAnalytics();
+
+});
+
+
+/* AUTO REFRESH */
+
+window.addEventListener(
+"storage",
+function(){
+
+foodItems=
+JSON.parse(
+localStorage.getItem("canteenFoodItems")
+) || [];
+
+orders=
+JSON.parse(
+localStorage.getItem("canteenOrders")
+) || [];
+
+displayFoodItems();
+
+displayOrders();
+
+updateAnalytics();
+
+});
+
+</script>
+
+</body>
+</html>

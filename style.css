@@ -1,0 +1,922 @@
+/* =====================================================
+   SMART CANTEEN - COMPLETE STYLE.CSS
+   Menu + About + Navbar + Food Cards
+   ===================================================== */
+
+
+/* =====================================================
+   GLOBAL
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding-top: 76px;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =====================================================
+   FIXED NAVBAR
+   ===================================================== */
+
+.navbar-custom {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: 76px;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+
+    z-index: 9999;
+
+    border-bottom: 1px solid #eeeeee;
+
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-custom .container {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* =====================================================
+   SMART CANTEEN BRAND
+   ===================================================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #111827;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.brand:hover {
+    color: #111827;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #111827;
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   NAVIGATION LINKS
+   ===================================================== */
+
+.nav-link-custom {
+    text-decoration: none;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition: 0.2s;
+}
+
+.nav-link-custom:hover {
+    color: #f59a00;
+}
+
+.nav-link-custom.active {
+    color: #f59a00;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   CART BUTTON
+   ===================================================== */
+
+.cart-button {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    text-decoration: none;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    padding: 8px 12px;
+
+    border-radius: 9px;
+
+    background: #fff8eb;
+}
+
+.cart-button:hover {
+    color: #f59a00;
+}
+
+.cart-badge {
+    position: absolute;
+
+    top: -7px;
+    right: -7px;
+
+    min-width: 19px;
+    height: 19px;
+
+    padding: 0 5px;
+
+    border-radius: 50px;
+
+    background: #f59a00;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   ORANGE BUTTON
+   ===================================================== */
+
+.order-now-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    background: #f59a00;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    border: none;
+
+    transition: 0.2s;
+}
+
+.order-now-btn:hover {
+    background: #e88900;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   MENU HEADER
+   ===================================================== */
+
+.menu-header {
+    padding: 42px 0 22px;
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.menu-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+.menu-header p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   CATEGORY FILTERS
+   ===================================================== */
+
+.filter-container {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    border: 1px solid #e5e7eb;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    border-radius: 50px;
+
+    padding: 10px 18px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: #f59a00;
+
+    color: #f59a00;
+}
+
+.filter-btn.active {
+    background: #f59a00;
+
+    color: #ffffff;
+
+    border-color: #f59a00;
+}
+
+
+/* =====================================================
+   FOOD CARD
+   ===================================================== */
+
+.food-card {
+    height: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.055);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =====================================================
+   FOOD IMAGE
+   ===================================================== */
+
+.food-image {
+    width: 100%;
+
+    height: 190px;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #f5f5f5;
+}
+
+
+/* =====================================================
+   FOOD CONTENT
+   ===================================================== */
+
+.food-content {
+    padding: 17px;
+}
+
+.food-title {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    line-height: 1.25;
+}
+
+.food-description {
+    min-height: 38px;
+
+    margin: 9px 0 7px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   CATEGORY BADGE
+   ===================================================== */
+
+.category-badge {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 5px;
+
+    background: #fff4df;
+
+    color: #d88900;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: lowercase;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   FOOD RATING
+   ===================================================== */
+
+.food-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 6px;
+
+    margin-bottom: 9px;
+
+    font-size: 12px;
+}
+
+.stars {
+    color: #f59a00;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
+.rating-number {
+    color: #374151;
+
+    font-weight: 800;
+}
+
+.rating-count {
+    color: #9ca3af;
+}
+
+
+/* =====================================================
+   AVAILABLE
+   ===================================================== */
+
+.available {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #39935a;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.available i {
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   FOOD PRICE
+   ===================================================== */
+
+.food-price {
+    color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   ADD BUTTON
+   ===================================================== */
+
+.add-btn {
+    border: none;
+
+    background: #f59a00;
+
+    color: #ffffff;
+
+    border-radius: 9px;
+
+    padding: 9px 17px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.add-btn:hover {
+    background: #e88900;
+}
+
+
+/* =====================================================
+   QUANTITY CONTROL
+   ===================================================== */
+
+.quantity-control {
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid #f59a00;
+
+    border-radius: 9px;
+}
+
+.quantity-control button {
+    width: 32px;
+
+    height: 32px;
+
+    border: none;
+
+    background: #fff4df;
+
+    color: #e88900;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.quantity-control button:hover {
+    background: #f59a00;
+
+    color: #ffffff;
+}
+
+.quantity-control span {
+    min-width: 32px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+
+/* =====================================================
+   ABOUT SECTION
+   ===================================================== */
+
+.about-section {
+    margin-top: 90px;
+
+    padding: 70px 0;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+/* ABOUT SMALL TITLE */
+
+.about-label {
+    color: #f59a00;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ABOUT HEADING */
+
+.about-section h2 {
+    margin-top: 12px;
+
+    margin-bottom: 20px;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+.about-section h2 span {
+    color: #f59a00;
+}
+
+
+/* ABOUT TEXT */
+
+.about-section p {
+    color: #6b7280;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   ABOUT FEATURES
+   ===================================================== */
+
+.about-features {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.about-feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+.about-feature > i {
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #fff4df;
+
+    color: #f59a00;
+
+    font-size: 18px;
+}
+
+.about-feature strong {
+    display: block;
+
+    color: #111827;
+
+    font-size: 14px;
+}
+
+.about-feature small {
+    display: block;
+
+    color: #6b7280;
+
+    margin-top: 2px;
+}
+
+
+/* =====================================================
+   ABOUT RIGHT CARD
+   ===================================================== */
+
+.about-card {
+    padding: 45px;
+
+    background: #fff8eb;
+
+    border: 1px solid #ffe5b5;
+
+    border-radius: 25px;
+
+    text-align: center;
+}
+
+
+/* ABOUT ICON */
+
+.about-icon {
+    width: 65px;
+
+    height: 65px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #f59a00;
+
+    color: #ffffff;
+
+    font-size: 28px;
+}
+
+
+/* ABOUT CARD HEADING */
+
+.about-card h3 {
+    color: #111827;
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+
+/* ABOUT CARD TEXT */
+
+.about-card p {
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   ABOUT STATISTICS
+   ===================================================== */
+
+.about-stat-row {
+    display: flex;
+
+    justify-content: space-around;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #f0d9ad;
+}
+
+.about-stat-row div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.about-stat-row strong {
+    color: #f59a00;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.about-stat-row span {
+    color: #6b7280;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    margin-top: 70px;
+
+    padding: 35px 0;
+
+    background: #111827;
+
+    color: #ffffff;
+}
+
+.footer h5 {
+    margin-bottom: 8px;
+
+    font-weight: 800;
+}
+
+.footer p,
+.footer small {
+    color: #cbd5e1;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .navbar-custom {
+        height: 68px;
+    }
+
+    body {
+        padding-top: 68px;
+    }
+
+    .navbar-custom .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .nav-link-custom {
+        display: none;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .brand-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .menu-header {
+        padding-top: 30px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .menu-header h1 {
+        font-size: 32px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 576px) {
+
+    .menu-header h1 {
+        font-size: 29px;
+    }
+
+    .menu-header p {
+        font-size: 14px;
+    }
+
+    .filter-btn {
+        padding: 8px 13px;
+
+        font-size: 12px;
+    }
+
+    .food-image {
+        height: 210px;
+    }
+
+    .about-section {
+        margin-top: 50px;
+
+        padding: 45px 0;
+    }
+
+    .about-section h2 {
+        font-size: 32px;
+    }
+
+    .about-card {
+        padding: 30px 20px;
+    }
+
+    .about-stat-row {
+        gap: 8px;
+    }
+
+    .about-stat-row strong {
+        font-size: 17px;
+    }
+
+}

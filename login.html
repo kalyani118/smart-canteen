@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Smart Canteen | Login</title>
+
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #fffaf2;
+
+            color: #111827;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar-custom {
+
+            position: sticky;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 76px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #eeeeee;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,0.05);
+
+            z-index: 9999;
+        }
+
+        .navbar-inner {
+
+            height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #111827;
+
+            font-size: 21px;
+
+            font-weight: 800;
+        }
+
+        .brand:hover {
+            color: #111827;
+        }
+
+
+        .brand-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            font-size: 17px;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 26px;
+        }
+
+
+        .nav-link-custom {
+
+            color: #374151;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+        .nav-link-custom:hover {
+
+            color: #f59a00;
+        }
+
+
+        .nav-link-custom.active {
+
+            color: #f59a00;
+
+            font-weight: 700;
+        }
+
+
+        /* ================================
+           LOGIN PAGE
+        ================================= */
+
+        .login-page {
+
+            min-height:
+                calc(100vh - 76px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+        }
+
+
+        .login-wrapper {
+
+            width: 100%;
+
+            max-width: 460px;
+        }
+
+
+        .login-card {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,0.08);
+        }
+
+
+        .login-icon {
+
+            width: 62px;
+
+            height: 62px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #fff1d9;
+
+            color: #f59a00;
+
+            font-size: 28px;
+        }
+
+
+        .login-title {
+
+            margin: 0;
+
+            color: #111827;
+
+            text-align: center;
+
+            font-size: 30px;
+
+            font-weight: 800;
+        }
+
+
+        .login-subtitle {
+
+            margin: 9px 0 28px;
+
+            color: #6b7280;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================================
+           ROLE SELECTOR
+        ================================= */
+
+        .role-selector {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 24px;
+        }
+
+
+        .role-btn {
+
+            padding: 12px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .role-btn:hover {
+
+            border-color: #f59a00;
+
+            color: #f59a00;
+        }
+
+
+        .role-btn.active {
+
+            border-color: #f59a00;
+
+            background: #fff5e5;
+
+            color: #f59a00;
+        }
+
+
+        /* ================================
+           FORM
+        ================================= */
+
+        .form-label {
+
+            margin-bottom: 7px;
+
+            color: #374151;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .input-group-custom {
+
+            position: relative;
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-control-custom {
+
+            width: 100%;
+
+            height: 48px;
+
+            padding:
+                0 45px 0 43px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            color: #111827;
+
+            background: #ffffff;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+
+        .form-control-custom:focus {
+
+            border-color: #f59a00;
+
+            box-shadow:
+                0 0 0 3px rgba(245,154,0,0.10);
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9ca3af;
+
+            font-size: 16px;
+
+            z-index: 2;
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #9ca3af;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            z-index: 3;
+        }
+
+
+        .password-toggle:hover {
+
+            color: #f59a00;
+        }
+
+
+        /* ================================
+           OPTIONS
+        ================================= */
+
+        .login-options {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+
+            font-size: 12px;
+        }
+
+
+        .remember-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #6b7280;
+
+            cursor: pointer;
+        }
+
+
+        .remember-label input {
+
+            accent-color: #f59a00;
+        }
+
+
+        .forgot-link {
+
+            color: #f59a00;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        .forgot-link:hover {
+
+            color: #e88900;
+
+            text-decoration: underline;
+        }
+
+
+        /* ================================
+           LOGIN BUTTON
+        ================================= */
+
+        .login-submit {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #f59a00;
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .login-submit:hover {
+
+            background: #e88900;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 7px 18px rgba(245,154,0,0.25);
+        }
+
+
+        /* ================================
+           MESSAGE
+        ================================= */
+
+        .message-box {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 11px 13px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        .message-box.success {
+
+            display: block;
+
+            background: #ecfdf3;
+
+            color: #18794e;
+
+            border: 1px solid #bbf7d0;
+        }
+
+
+        .message-box.error {
+
+            display: block;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border: 1px solid #fecaca;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        .footer {
+
+            padding: 25px 0;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            text-align: center;
+        }
+
+
+        .footer p {
+
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 991px) {
+
+            .nav-links {
+
+                gap: 12px;
+            }
+
+            .nav-link-custom {
+
+                font-size: 12px;
+            }
+
+        }
+
+
+        @media (max-width: 576px) {
+
+            .navbar-custom,
+            .navbar-inner {
+
+                height: 68px;
+            }
+
+            .brand {
+
+                font-size: 18px;
+            }
+
+            .brand-icon {
+
+                width: 32px;
+
+                height: 32px;
+            }
+
+            .nav-links {
+
+                gap: 8px;
+            }
+
+            .nav-link-custom {
+
+                display: none;
+            }
+
+            .login-page {
+
+                min-height:
+                    calc(100vh - 68px);
+
+                padding: 25px 15px;
+            }
+
+            .login-card {
+
+                padding: 25px 20px;
+
+                border-radius: 18px;
+            }
+
+            .login-title {
+
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar-custom">
+
+        <div class="container navbar-inner">
+
+
+            <!-- BRAND -->
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <span class="brand-icon">
+
+                    <i class="bi bi-cup-hot-fill"></i>
+
+                </span>
+
+                Smart Canteen
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+
+                <a
+                    href="index.html"
+                    class="nav-link-custom"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="menu.html"
+                    class="nav-link-custom"
+                >
+                    Menu
+                </a>
+
+
+                <a
+                    href="orders.html"
+                    class="nav-link-custom"
+                >
+                    My Orders
+                </a>
+
+
+                <a
+                    href="index.html#about"
+                    class="nav-link-custom"
+                >
+                    About
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="nav-link-custom active"
+                >
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         LOGIN PAGE
+    ===================================================== -->
+
+    <main class="login-page">
+
+
+        <div class="login-wrapper">
+
+
+            <div class="login-card">
+
+
+                <!-- LOGIN ICON -->
+
+                <div class="login-icon">
+
+                    <i class="bi bi-person-fill"></i>
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <h1 class="login-title">
+
+                    Welcome Back!
+
+                </h1>
+
+
+                <p class="login-subtitle">
+
+                    Login to your Smart Canteen account
+                    and start ordering.
+
+                </p>
+
+
+                <!-- =================================================
+                     ROLE SELECTOR
+                ================================================== -->
+
+                <div class="role-selector">
+
+
+                    <button
+                        type="button"
+                        class="role-btn active"
+                        id="studentRole"
+                        onclick="selectRole('student')"
+                    >
+
+                        <i class="bi bi-person"></i>
+
+                        Student
+
+                    </button>
+
+
+
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN FORM
+                ================================================== -->
+
+                <form id="loginForm">
+
+
+                    <!-- EMAIL -->
+
+                    <label
+                        class="form-label"
+                        for="email"
+                    >
+                        Email Address
+                    </label>
+
+
+                    <div class="input-group-custom">
+
+                        <i
+                            class="bi bi-envelope input-icon"
+                        ></i>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            class="form-control-custom"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <label
+                        class="form-label"
+                        for="password"
+                    >
+                        Password
+                    </label>
+
+
+                    <div class="input-group-custom">
+
+                        <i
+                            class="bi bi-lock input-icon"
+                        ></i>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control-custom"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            aria-label="Show password"
+                        >
+
+                            <i
+                                class="bi bi-eye"
+                                id="passwordIcon"
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="login-options">
+
+
+                        <label class="remember-label">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            Remember me
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="forgot-link"
+                            onclick="forgotPassword(); return false;"
+                        >
+
+                            Forgot Password?
+
+                        </a>
+
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="login-submit"
+                    >
+
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                        Login
+
+                    </button>
+
+
+                    <!-- MESSAGE -->
+
+                    <div
+                        id="messageBox"
+                        class="message-box"
+                    ></div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+
+                © 2026 Smart Canteen.
+                All rights reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           SELECTED ROLE
+        ===================================================== */
+
+        let selectedRole = "student";
+
+
+        /* =====================================================
+           SELECT ROLE
+        ===================================================== */
+
+        function selectRole(role) {
+
+            selectedRole = role;
+
+
+            const studentRole =
+                document.getElementById("studentRole");
+
+            const adminRole =
+                document.getElementById("adminRole");
+
+
+            studentRole.classList.remove("active");
+
+            adminRole.classList.remove("active");
+
+
+            if (role === "student") {
+
+                studentRole.classList.add("active");
+
+            } else {
+
+                adminRole.classList.add("active");
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SHOW / HIDE PASSWORD
+        ===================================================== */
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const passwordIcon =
+                document.getElementById("passwordIcon");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                passwordIcon.className =
+                    "bi bi-eye-slash";
+
+            } else {
+
+                password.type = "password";
+
+                passwordIcon.className =
+                    "bi bi-eye";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        function showMessage(
+            message,
+            type
+        ) {
+
+            const messageBox =
+                document.getElementById("messageBox");
+
+
+            messageBox.textContent =
+                message;
+
+
+            messageBox.className =
+                "message-box " + type;
+
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById("email")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("password")
+                            .value;
+
+
+                    const rememberMe =
+                        document
+                            .getElementById("rememberMe")
+                            .checked;
+
+
+                    /* -------------------------------
+                       VALIDATION
+                    -------------------------------- */
+
+                    if (!email || !password) {
+
+                        showMessage(
+                            "Please enter your email and password.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (password.length < 4) {
+
+                        showMessage(
+                            "Password must contain at least 4 characters.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* -------------------------------
+                       SAVE LOGIN
+                    -------------------------------- */
+
+                    localStorage.setItem(
+                        "loggedIn",
+                        "true"
+                    );
+
+
+                    localStorage.setItem(
+                        "isLoggedIn",
+                        "true"
+                    );
+
+
+                    const currentUser = {
+
+                        email: email,
+
+                        role: selectedRole,
+
+                        loginTime:
+                            new Date().toISOString()
+
+                    };
+
+
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify(currentUser)
+                    );
+
+
+                    /* -------------------------------
+                       REMEMBER EMAIL
+                    -------------------------------- */
+
+                    if (rememberMe) {
+
+                        localStorage.setItem(
+                            "rememberedEmail",
+                            email
+                        );
+
+                    } else {
+
+                        localStorage.removeItem(
+                            "rememberedEmail"
+                        );
+
+                    }
+
+
+                    /* -------------------------------
+                       SUCCESS MESSAGE
+                    -------------------------------- */
+
+                    showMessage(
+                        "Login successful! Redirecting...",
+                        "success"
+                    );
+
+
+                    /* -------------------------------
+                       REDIRECT
+                    -------------------------------- */
+
+                    setTimeout(
+                        function() {
+
+                            if (
+                                selectedRole === "admin"
+                            ) {
+
+                                window.location.href =
+                                    "admin.html";
+
+                            } else {
+
+                                window.location.href =
+                                    "menu.html";
+
+                            }
+
+                        },
+                        800
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           FORGOT PASSWORD
+        ===================================================== */
+
+        function forgotPassword() {
+
+            showMessage(
+                "Password reset feature will be available soon.",
+                "error"
+            );
+
+        }
+
+
+        /* =====================================================
+           LOAD REMEMBERED EMAIL
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                const rememberedEmail =
+                    localStorage.getItem(
+                        "rememberedEmail"
+                    );
+
+
+                if (rememberedEmail) {
+
+                    document.getElementById(
+                        "email"
+                    ).value = rememberedEmail;
+
+
+                    document.getElementById(
+                        "rememberMe"
+                    ).checked = true;
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+</body>
+
+</html>
